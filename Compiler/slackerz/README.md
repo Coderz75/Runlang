@@ -93,7 +93,7 @@ Slackerz also offers for ALL COMPILERS an auto return type for functions, fn. As
 ```cpp
 fn MyFn(){
 	print("COol");
-	return True;
+	return true;
 }
 ```
 This lovely fn variable won't work in main() though, as it results as an error
@@ -158,7 +158,7 @@ And to print on the same line:
 
 also, print is very similar to python, so you can also concatinate via commas:
 ```cpp
-      print("Hello",1,3,4,True,"Nice",noend)
+      print("Hello",1,3,4,true,"Nice",noend)
       
 ```
 <h3>Input</h3>

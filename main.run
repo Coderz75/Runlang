@@ -1,0 +1,7 @@
+fn hi(){
+    print("hi");
+}
+
+fn main(){
+    hi();
+}

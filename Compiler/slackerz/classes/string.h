@@ -16,6 +16,9 @@ namespace slackerz{
                 str(char* a){
                     v = a;
                 }
+                str(){
+                    v = "";
+                }
                 string upper(){
                     string data = v;
                     std::for_each(data.begin(), data.end(), [](char & c){
