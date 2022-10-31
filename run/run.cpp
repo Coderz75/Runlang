@@ -2,37 +2,51 @@
 #include "color/termcolor.hpp"
 #include "errors.h"
 #include <fstream>
+#include "checkcompiler.h"
 
 #include s_all
+
+#ifdef __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wwrite-strings"
+#endif
 
 str fileContent;
 s::list<string> fcontent;
 
+
 int main(int argc, char** argv)
 {
+    if(!checkcompiler())cerror("Sad");
     if (argc == 1){
         print("Runlang");
+        return 1;
     }
     else if(argc > 2){
         cerror("To many inputs\nWe on accept one input\n");
     }
-    str filename = argv[1];
-
-    ifstream file(filename.v);
-    string a;
     
+    str filename = argv[1];
+    
+    std::ifstream file; file.open(filename.v);
+
     if(!file.is_open())
     {
         cerror("File does not exist");
     }
 
+    string a;
+    s::list<string> l;
     while (getline (file, a)) {
-        fileContent.v += a;
-    }
 
+        fileContent = fileContent.v + a;
+        print(a);
+        l.append(a);
+    }
     // Close the file
     file.close();
 
+    print(l);
 
     if (filename.endswith(".run")){
         // Compiler
@@ -74,7 +88,6 @@ int main(int argc, char** argv)
             }
         }
         fcontent.append(k);
-
         print(fcontent);
     
     }else if (filename.endswith(".runex")){
@@ -84,6 +97,8 @@ int main(int argc, char** argv)
     else{
         cerror("Invalid File");
     }
-
-
+    
 }
+#ifdef __GNUC__
+#pragma GCC diagnostic pop
+#endif
