@@ -5,13 +5,37 @@
 using namespace rsl;
 #include <algorithm>
 #include <cstring>
-
+#include "classes/string.h"
 
 namespace rsl{
     #define fn auto
     #define var auto
     #define run int
+
+    str input(std::string ask = ""){
+      std::cout << "\n";
+      std::string x;
+      std::cout << ask;
+      std::getline(std::cin, x);
+      return x;
+    }
+    str input(str ask){
+      std::cout << "\n";
+      std::string x;
+      std::cout << ask.v;
+      std::getline(std::cin, x);
+      return x;
+    }
+    str input(){
+      std::cout << "\n";
+      std::string x;
+      std::getline(std::cin, x);
+      return x;
+    }
+    
     template <typename U>
+
+
     int toint(U something);
 
     template<>

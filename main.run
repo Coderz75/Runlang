@@ -1,5 +1,6 @@
 run main(){
     print("Hello");
-    var x = "Hi";
-    print(x);
+    var x = input("Hi ").lower();
+    if (x== "hello") print("Hi!");
+    
 }
