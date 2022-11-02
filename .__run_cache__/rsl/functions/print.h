@@ -44,12 +44,12 @@ namespace rsl{
     }
 	template <typename X>
     static void prints(std::vector<X> a, std::string x=""){
-		cout << "{";
+		std::cout << "{";
         for(int i=0; i < a.size(); i++){
 			prints(a.at(i));
-			if(i+1 < a.size()) cout<< ", ";
+			if(i+1 < a.size()) std::cout<< ", ";
 		}
-		cout << "}";
+		std::cout << "}";
 	}
 
     void print() {

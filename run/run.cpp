@@ -25,9 +25,15 @@ fn makef(){
     file.close();
 }
 
+fn makeE(){
+    ofstream file(".__run_cache__/error.txt");
+    file.close();  
+}
+
 int main(int argc, char** argv)
 {
     makef();
+    makeE();
     if (argc == 1){
         print("Runlang");
         return 1;
@@ -42,8 +48,12 @@ int main(int argc, char** argv)
     while (getline (file, a)) {
         writefile(a);
     }
-
-    string x = "cl /o main .__run_cache__/data.cpp >nul 2>nul";
+    #ifdef _WIN32
+    string x = "cl /o main .__run_cache__/data.cpp >nul 2>nul >.__run_cache__/error.txt";
+    #elif __GNUC__
+    print("running");
+    string x = "g++ -o main .__run_cache__/data.cpp >nul 2>nul >.__run_cache__/error.txt";
+    #endif
     system(x.c_str());
 
 }

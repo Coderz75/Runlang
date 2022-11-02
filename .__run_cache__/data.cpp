@@ -4,5 +4,5 @@ fn bob(){
 }
 run main(){
     print("Hello");
-    bob();
+    bob()
 }
