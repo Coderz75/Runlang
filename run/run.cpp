@@ -49,10 +49,10 @@ int main(int argc, char** argv)
         writefile(a);
     }
     #ifdef _WIN32
-    string x = "cl /o main .__run_cache__/data.cpp >nul 2>nul >.__run_cache__/error.txt";
+    string x = "cl /std:c++20 /o main .__run_cache__/data.cpp >nul 2>nul >.__run_cache__/error.txt";
     #elif __GNUC__
     print("running");
-    string x = "g++ -o main .__run_cache__/data.cpp >nul 2>nul >.__run_cache__/error.txt";
+    string x = "g++ -std:c++20 -o main .__run_cache__/data.cpp >nul 2>nul >.__run_cache__/error.txt";
     #endif
     system(x.c_str());
 
