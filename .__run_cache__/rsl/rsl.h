@@ -62,26 +62,26 @@ namespace rsl{
 
 //to string
     template <typename L>
-    std::string tostring(L a);
+    str tostring(L a);
 
     template<>
-    std::string tostring<float>(float a){
+    str tostring<float>(float a){
       return std::to_string(a);
     }
     template<>
-    std::string tostring<int>(int a){
+    str tostring<int>(int a){
       return std::to_string(a);
     }
     template<>
-    std::string tostring<double>(double a){
+    str tostring<double>(double a){
       return std::to_string(a);
     }
     template<>
-    std::string tostring(bool b) {
-    return b ? "true" : "false";
+    str tostring(bool b) {
+    return b ? std::string("true") : std::string("false");
     }
     template<>
-    std::string tostring(char a){
+    str tostring(char a){
         char l = a;
         std::string f;
         f.push_back(l);

@@ -1,0 +1,9 @@
+data.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\ostream(761): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
+C:\Users\scien\Documents\Cloud_Code\Runlang\.__run_cache__\rsl\functions/print.h(43): note: see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::operator <<<std::char_traits<char>>(std::basic_ostream<char,std::char_traits<char>> &,const char *)' being compiled
+Microsoft (R) Incremental Linker Version 14.33.31629.0
+Copyright (C) Microsoft Corporation.  All rights reserved.
+
+/out:data.exe 
+/out:main.exe 
+data.obj 

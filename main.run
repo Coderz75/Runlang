@@ -1,6 +1,5 @@
 run main(){
     print("Hello");
     var x = input("Hi ").lower();
-    if (x== "hello") print("Hi!");
-    
+    if (x.startswith("h")) print("hi");
 }

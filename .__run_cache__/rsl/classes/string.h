@@ -4,13 +4,59 @@
 #include <string>
 #include <algorithm>
 #include <cstring>
-using namespace std;
+
 namespace rsl{
 
     class str{
             public:
-                string v;
-                str(string s){
+                //Operator overloading
+                friend std::ostream& operator<<(std::ostream& os, const str& string);
+
+                str operator+(const str& string) { //Plus: str + str
+                    str new_str;
+                    new_str.v = this->v + string.v;
+                    return new_str;
+                }
+                str operator+(const std::string& string) { //Plus: str + std::string
+                    str new_str;
+                    new_str.v = this->v + string;
+                    return new_str;
+                }       
+    			operator std::string () const { // C++ verison of __repr__
+            		return v;
+        		}
+                bool operator==(const str& string) {
+                    if(this->v == string.v){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+                bool operator==(const std::string& string) { //!= Bool
+                    if(this->v == string){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+                bool operator!=(const str& string) {
+                    if(this->v != string.v){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+                bool operator!=(const std::string& string) { //!= Bool
+                    if(this->v != string){
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+
+                //Actual stuff
+                std::string v;
+                str(std::string s){
                     v = s;
                 }
                 str(char* a){
@@ -19,30 +65,27 @@ namespace rsl{
                 str(){
                     v = "";
                 }
-                string upper(){
-                    string data = v;
+                str upper(){
+                    std::string data = v;
                     std::for_each(data.begin(), data.end(), [](char & c){
                         c = ::toupper(c);
                     });
                     return data;
                 }
-                string lower(){
-                    string data = v;
+                str lower(){
+                    std::string data = v;
                     std::for_each(data.begin(), data.end(), [](char & c){
                         c = ::tolower(c);
                     });
                     return data;
                 }
-    			operator std::string () const { // C++ verison of __repr__
-            		return v;
-        		}
-                std::vector<std::string>  split(string x = " ", int m = false){
+                std::vector<std::string>  split(std::string x = " ", int m = false){
                     std::vector<std::string> so {};
-                    string* s;
-                    s = new string;
+                    std::string* s;
+                    s = new std::string;
                     *s = v;
-                    string* delim;
-                    delim = new string;
+                    std::string* delim;
+                    delim = new std::string;
                     *delim = x;
                     auto start = 0;
                     auto end = (*s).find(*delim);
@@ -51,7 +94,7 @@ namespace rsl{
                         int it = 0;
                         while (end != std::string::npos && it < m)
                         {
-                            string m = (*s).substr(start, end - start);
+                            std::string m = (*s).substr(start, end - start);
                             so.push_back(m);
                             start = end + (*delim).length();
                             end = (*s).find(*delim, start);
@@ -60,7 +103,7 @@ namespace rsl{
                     }else{
                         while (end != std::string::npos)
                         {
-                            string m = (*s).substr(start, end - start);
+                            std::string m = (*s).substr(start, end - start);
                             so.push_back(m);
                             start = end + (*delim).length();
                             end = (*s).find(*delim, start);
@@ -75,14 +118,14 @@ namespace rsl{
                   }
                 return{v};
                 }
-                string capitilize(){
-                    string a = v;
+                str capitilize(){
+                    std::string a = v;
                     a[0] = toupper(a[0]); 
                     return a;
                 }
                 bool isupper(){
-                    string* m;
-                    m = new string;
+                    std::string* m;
+                    m = new std::string;
                     *m = v;
                     for (int i = 0; i < (*m).length(); i++) {
                       if(::isupper((*m)[i])){  
@@ -95,8 +138,8 @@ namespace rsl{
                     return true;
                 }
                 bool islower(){
-                    string* m;
-                    m = new string;
+                    std::string* m;
+                    m = new std::string;
                     *m = v;
                     for (int i = 0; i < (*m).length(); i++) {
                       if(::islower((*m)[i])){  
@@ -108,15 +151,13 @@ namespace rsl{
                     delete m;
                     return true;
                 }
-                string convstr(){
-                    return v;
-                }
-                string center(int s, string a = " "){
+
+                str center(int s, std::string a = " "){
                     int* spaces ;
                     spaces = new int;
                     *spaces = s - v.length();
                     *spaces = *spaces/2;
-                    string returnval = v;
+                    std::string returnval = v;
                     for(int i = 0; i<*spaces; i++){
                         returnval = a + returnval;
                     }
@@ -127,16 +168,16 @@ namespace rsl{
                     return returnval;
                     
                 }
-                string zfill(int length){
-                    string l = v;
+                str zfill(int length){
+                    std::string l = v;
                     int zeros = length - v.length();
                     for(int i = 0; i< zeros; i++){
                         l = "0" + l; 
                     }
                     return l;
                 }
-                string swapcase(){
-                    string a = v;
+                str swapcase(){
+                    std::string a = v;
                     for(int i = 0; i < a.length(); i++){
                         if(::islower(a[i])){
                             a[i] = toupper(a[i]);
@@ -146,8 +187,8 @@ namespace rsl{
                     }
                     return a;
                 }
-                bool startswith(string a, int b = 0, int c = 0){
-                    string l = v;
+                bool startswith(std::string a, int b = 0, int c = 0){
+                    std::string l = v;
                     int x = c;
                     if (x== 0){
                         x = a.length();
@@ -159,7 +200,7 @@ namespace rsl{
                     }
                     return true;
                 }
-                bool endswith(string suffix){
+                bool endswith(std::string suffix){
                     if (v.length() < suffix.length()) {
                         return false;
                     }
@@ -173,5 +214,11 @@ namespace rsl{
                 }
                 
         };
+std::ostream& operator<<(std::ostream& os, const str& string)
+{
+    os << string.v;
+    return os;
+}
+
 }
 #endif
