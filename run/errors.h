@@ -17,11 +17,11 @@ void cerror(string error){
 }
 
 void warn(string warnmsg){
-    cout << termcolor::yellow << "WARNING: " << warnmsg <<"\n"<< termcolor::reset;
+    cout << termcolor::yellow << "WARNING: " << warnmsg << termcolor::reset << "\n";
 }
 
 void warn(int line, string warnmsg){
-    cout << termcolor::yellow << "WARNING [line: "<<tostring(line)<< "]: " << warnmsg <<"\n"<< termcolor::reset;
+    cout << termcolor::yellow << "WARNING [line: "<<tostring(line)<< "]: " << warnmsg << termcolor::reset << "\n";
 }
 
 #endif

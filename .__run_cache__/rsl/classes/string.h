@@ -54,7 +54,7 @@ namespace rsl{
                     }
                 }
 
-                //Actual stuff
+                //Constructors
                 std::string v;
                 str(std::string s){
                     v = s;
@@ -65,6 +65,10 @@ namespace rsl{
                 str(){
                     v = "";
                 }
+                str(const char x){
+                    v = x;
+                }
+                //Actual stuff
                 str upper(){
                     std::string data = v;
                     std::for_each(data.begin(), data.end(), [](char & c){

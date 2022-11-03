@@ -7,18 +7,14 @@ using namespace rsl;
 #include <cstring>
 #include "classes/string.h"
 
+
 namespace rsl{
     #define fn auto
     #define var auto
     #define run int
 
-    str input(std::string ask = ""){
-      std::cout << "\n";
-      std::string x;
-      std::cout << ask;
-      std::getline(std::cin, x);
-      return x;
-    }
+    typedef str Str;
+
     str input(str ask){
       std::cout << "\n";
       std::string x;
@@ -32,7 +28,15 @@ namespace rsl{
       std::getline(std::cin, x);
       return x;
     }
-    
+    #ifdef _WIN32
+       str input(std::string ask){
+      std::cout << "\n";
+      std::string x;
+      std::cout << ask;
+      std::getline(std::cin, x);
+      return x;
+    } 
+    #endif
     template <typename U>
 
 

@@ -34,6 +34,7 @@ int main(int argc, char** argv)
 {
     makef();
     makeE();
+
     if (argc == 1){
         print("Runlang");
         return 1;
@@ -44,15 +45,26 @@ int main(int argc, char** argv)
     string a;
     str filename = argv[1];
     writefile("#include \"rsl/rsl.h\"");
+
+    #ifdef __GNUC__
+    writefile("#pragma GCC diagnostic push");
+    writefile("#pragma GCC diagnostic ignored \"-Wwrite-strings\"");
+    #endif
+
     ifstream file(filename.v);
     while (getline (file, a)) {
-        writefile(a);
+        writefile(a + ";");
     }
+    #ifdef __GNUC__
+    writefile("#pragma GCC diagnostic pop");
+    #endif
+
+    //Compile
     #ifdef _WIN32
     string x = "cl /std:c++20 /o main .__run_cache__/data.cpp >nul 2>nul >.__run_cache__/error.txt";
     #elif __GNUC__
-    print("running");
-    string x = "g++ -std:c++20 -o main .__run_cache__/data.cpp >nul 2>nul >.__run_cache__/error.txt";
+    warn("G++, gcc, and clang is not fully supported yet. Use at your own risk");
+    string x = "g++ -std=c++20 -o main .__run_cache__/data.cpp >.__run_cache__/error.txt";
     #endif
     system(x.c_str());
 
