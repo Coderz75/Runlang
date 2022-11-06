@@ -3,7 +3,7 @@
 #include "errors.h"
 #include <fstream>
 #include <filesystem>
-
+#include "parser.h"
 #include s_all
 
 #ifdef __GNUC__
@@ -51,10 +51,15 @@ int main(int argc, char** argv)
     writefile("#pragma GCC diagnostic ignored \"-Wwrite-strings\"");
     #endif
 
+
     ifstream file(filename.v);
     while (getline (file, a)) {
-        writefile(a + ";");
+        string write = a;
+        replaceStr(write);
+        writefile(write + ";");
     }
+
+
     #ifdef __GNUC__
     writefile("#pragma GCC diagnostic pop");
     #endif

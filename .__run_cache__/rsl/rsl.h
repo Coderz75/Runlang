@@ -6,7 +6,8 @@ using namespace rsl;
 #include <algorithm>
 #include <cstring>
 #include "classes/string.h"
-
+#include "classes/os.h"
+#include "classes/random.h"
 
 namespace rsl{
     #define fn auto
