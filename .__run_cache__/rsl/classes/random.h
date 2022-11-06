@@ -1,7 +1,9 @@
 #ifndef RANDOM_H
 #define RANDOM_H
 #include <iostream>
-
+#ifndef _WIN32
+#include <climits>
+#endif
 namespace rsl{
 
 class r{

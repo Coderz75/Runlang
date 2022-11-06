@@ -14,7 +14,7 @@ namespace rsl{
     #define var auto
     #define run int
 
-    typedef str Str;
+    typedef str string;
 
     str input(str ask){
       std::cout << "\n";

@@ -1,6 +1,10 @@
 #ifndef OS_H
 #define OS_H
+#ifdef _WIN32
 #include "./rsl.h"
+#else
+#include "../rsl.h"
+#endif
 namespace rsl{
 class o{
     public:

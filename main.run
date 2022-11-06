@@ -1,5 +1,4 @@
 run main(){
     print("Welcome to Runlang")
-    print()
-
+    print(input("Hi how is life? ")
 }
