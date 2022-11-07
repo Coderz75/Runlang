@@ -4,6 +4,11 @@
 #include <fstream>
 #include <filesystem>
 #include "parser.h"
+
+#ifndef _WIN32
+#include "unixbased.h"
+#endif
+
 #include s_all
 
 #ifdef __GNUC__
@@ -69,11 +74,15 @@ int main(int argc, char** argv)
     //Compile
     #ifdef _WIN32
     string x = "cl /std:c++20 /o main .__run_cache__/main.cpp >nul 2>nul >.__run_cache__/error.txt";
+    system(x.c_str());
     #else
+    Command command;
     warn("G++, gcc, and clang is not fully supported yet. Use at your own risk");
     string x = "g++ -std=c++20 -o main .__run_cache__/main.cpp >.__run_cache__/error.txt";
+    command.Run(x);
+    cout << "stderr: " << command.GetStdErrStr() << endl;
     #endif
-    system(x.c_str());
+
     
     ifstream errorF(".__run_cache__/error.txt");
     if(!errorF){

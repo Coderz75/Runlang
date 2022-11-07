@@ -1,2 +1,0 @@
-main.cpp
-.__run_cache__/main.cpp(4): error C2143: syntax error: missing ')' before ';'
