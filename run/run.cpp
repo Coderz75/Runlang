@@ -84,8 +84,13 @@ int main(int argc, char** argv)
     while (getline (errorF, a)) {
         errors.append(a);
     }
-
     errorF.close();
+    #ifdef __GNUC__
+    if(std::filesystem::is_empty(".__run_cache__/error.txt")){
+        exit(1);
+    }
+    #endif
+    
 
     #ifdef _WIN32
     try{
