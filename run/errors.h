@@ -38,9 +38,13 @@ void warn(int line, string warnmsg){
     cout << termcolor::yellow << "WARNING [line: "<<tostring(line)<< "]: " << warnmsg << termcolor::reset << "\n";
 }
 
-void givetips(string errorType, string& tips){
-    if(errorType == " error C2143"){
+
+void givetips(string& errorType, string& tips){
+    
+    if(errorType == " error C2143" or errorType == " expected ‘)’ before ‘;’ token"){
+        
         tips = "You might be missing a ')' in one of the previous lines";
     }
 }
+
 #endif

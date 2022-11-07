@@ -5,9 +5,6 @@
 #include <filesystem>
 #include "parser.h"
 
-#ifndef _WIN32
-#include "unixbased.h"
-#endif
 
 #include s_all
 
@@ -51,11 +48,10 @@ int main(int argc, char** argv)
     str filename = argv[1];
     writefile("#include \"rsl/rsl.h\"");
 
-    #ifdef __GNUC__
-    writefile("#pragma GCC diagnostic push");
-    writefile("#pragma GCC diagnostic ignored \"-Wwrite-strings\"");
-    #endif
 
+    #ifdef __GNUC__
+    int lineSubtrac = -1;
+    #endif
 
     ifstream file(filename.v);
     while (getline (file, a)) {
@@ -63,26 +59,22 @@ int main(int argc, char** argv)
         fcontent.append(a);
         replaceStr(write);
         writefile(write + ";");
+        #ifdef __GNUC__
+        lineSubtrac +=1;
+        #endif
 
     }
 
-    file.close();
-    #ifdef __GNUC__
-    writefile("#pragma GCC diagnostic pop");
-    #endif
 
     //Compile
     #ifdef _WIN32
     string x = "cl /std:c++20 /o main .__run_cache__/main.cpp >nul 2>nul >.__run_cache__/error.txt";
-    system(x.c_str());
     #else
-    Command command;
-    warn("G++, gcc, and clang is not fully supported yet. Use at your own risk");
-    string x = "g++ -std=c++20 -o main .__run_cache__/main.cpp >.__run_cache__/error.txt";
-    command.Run(x);
-    cout << "stderr: " << command.GetStdErrStr() << endl;
-    #endif
 
+    warn("G++, gcc, and clang is not fully supported yet. Use at your own risk");
+    string x = "g++ -std=c++20 -o main .__run_cache__/main.cpp 2>.__run_cache__/error.txt"; 
+    #endif
+    system(x.c_str());
     
     ifstream errorF(".__run_cache__/error.txt");
     if(!errorF){
@@ -92,7 +84,9 @@ int main(int argc, char** argv)
     while (getline (errorF, a)) {
         errors.append(a);
     }
+
     errorF.close();
+
     #ifdef _WIN32
     try{
         if(errors.v[8] == "main.obj"){
@@ -119,8 +113,27 @@ int main(int argc, char** argv)
     }catch(...){
         cerror(toint(line),elist.v[2]+ ": " + elist.v[3], fcontent.v[toint(line) -1],fcontent.v[toint(line) -2],"",tips);
     }
-    
 
+    #else 
+
+    str e = errors.v[1];
+    s::list<string> elist = e.split(":");
+
+    int line = toint(elist.v[1]) - lineSubtrac;
+    if (elist.v[3] != " error") exit(0);
+    string errorType = elist.v[4];
+
+    //Calculating tips
+
+    string tips = "No tips found";
+
+    givetips(errorType,tips);
+    
+    try{
+        cerror(line,elist.v[4], fcontent.v[line -1],fcontent.v[line -2],fcontent.v[line ],tips);
+    }catch(...){
+        cerror(line,elist.v[2]+ ": " + elist.v[5], fcontent.v[line -1],fcontent.v[line -2],"",tips);
+    }
     #endif
 
 }

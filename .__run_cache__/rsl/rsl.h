@@ -124,4 +124,9 @@ namespace rsl{
         return (float) a;
     }
 }
+#ifdef __GNUC__
+
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wwrite-strings"
+#endif
 #endif
