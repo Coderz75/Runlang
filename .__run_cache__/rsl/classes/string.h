@@ -68,6 +68,22 @@ namespace rsl{
                 str(const char x){
                     v = x;
                 }
+                str(float a){
+                    v = std::to_string(a);
+                }
+                str(int a){
+                    v = std::to_string(a);
+                }
+                str(double a){
+                    v = std::to_string(a);
+                }
+                str (bool a){
+                    v = a ? std::string("true") : std::string("false");
+                }
+                str(char a){
+                    v.push_back(a);
+                }
+                
                 //Actual stuff
                 str upper(){
                     std::string data = v;
