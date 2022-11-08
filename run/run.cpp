@@ -69,12 +69,16 @@ int main(int argc, char** argv)
     //Compile
     #ifdef _WIN32
     string x = "cl /std:c++20 /o main .__run_cache__/main.cpp >nul 2>nul >.__run_cache__/error.txt";
-    #else
-
-    warn("G++, gcc, and clang is not fully supported yet. Use at your own risk");
+    #else __GNUC__
+    warn("G++and clang is not fully supported yet. Use at your own risk");
     string x = "g++ -std=c++20 -o main .__run_cache__/main.cpp 2>.__run_cache__/error.txt"; 
     #endif
-    system(x.c_str());
+    if(system(x.c_str())){
+        x = "clang++ -o test -std=c++20 -o main .__run_cache__/main.cpp 2>.__run_cache__/error.txt"; 
+        if(system(x.c_str())){
+            cerror("A c++ compiler does not exist on your system");
+        }
+    }
     
     ifstream errorF(".__run_cache__/error.txt");
     if(!errorF){

@@ -124,9 +124,16 @@ namespace rsl{
         return (float) a;
     }
 }
+
+#ifdef __MINGW32__
+#error "Due to the fact that Mingw has some issues with libraries, we do not support it in runlang"
+#endif
+
 #ifdef __GNUC__
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wwrite-strings"
 #endif
+
+
 #endif
