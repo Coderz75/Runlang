@@ -19,11 +19,11 @@ str fileContent;
 s::list<string> fcontent;
 
 fn writefile(string a){
-    ofstream file(".__run_cache__/main.cpp",std::ios_base::app);
+    ofstream file(".__run_cache__/main.h",std::ios_base::app);
     file << a << "\n";
 }
 fn makef(){
-    ofstream file(".__run_cache__/main.cpp");
+    ofstream file(".__run_cache__/main.h");
     file.close();
 }
 

@@ -7,13 +7,14 @@
 template <class T>
 
 class ptr{
-    T* x; // Actual pointer
+T* x; // Actual pointer
 public:
+
     // Constructor
-    ptr(T* p = NULL) { x = p; }
+    ptr(T* p = NULL) { x = p;}
  
     // Destructor
-    ~ptr() { delete x; }
+    ~ptr() {delete x;}
  
     // Overloading dereferencing operator
     T& operator*() { return *x; }
@@ -23,9 +24,8 @@ public:
     operator auto () const{
         return x;
     }
-    void clear(){
-        delete x;
-    }
+
+
 };
 
 
