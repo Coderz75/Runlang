@@ -1,34 +1,14 @@
 #include "rsl/rsl.h"
-class h{;
-    str l;
-    public:;
-        h(){;
-            l = (rsl::string) "";
-        };
-        h(str x){ ;
-            l = x;
-        };
-        operator fn () const{;
-            return l;
-        };
-;
-};;
-;
-;
-;
-run main(){;
+namespace rslCache{
+fn main(){;
     ptr<int> x = new int;;
     print(x);;
     *x = 5;;
     print(*x);;
+    x.clear() // Deletes memory;
 ;
-    print(1);
-    h *z = new h;
-    print(2);
-    *z = (rsl::string) "Hello";
-    print(3);
-    std::cout << z;
-    print(4);
-    std::cout << *z;
+    print(x); // Won't print anything;
+    print(*x) //this will not either;
 ;
 };
+}

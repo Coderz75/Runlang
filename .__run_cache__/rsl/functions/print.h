@@ -11,6 +11,7 @@ namespace rsl{
 	std::string noend = "01101110~%~01101111 01100101~%~01101110~%~01100100 ";
 
 
+    
     static void prints(std::string a, std::string x=""){
         std::cout << a;
         std::cout << x;
@@ -20,10 +21,6 @@ namespace rsl{
         std::cout << x;
     }
 
-    template<typename Z>
-    static void prints(std::basic_ostream<Z> a) {
-        std::cout<<a;
-    }
 
     static void prints(int a, std::string x=""){
         std::cout << std::to_string(a);
@@ -46,6 +43,7 @@ namespace rsl{
     static void prints(){
         std::cout << "\n";
     }
+    
 	template <typename X>
     static void prints(std::vector<X> a, std::string x=""){
 		std::cout << "{";

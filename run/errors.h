@@ -55,9 +55,13 @@ void warn(int line, string warnmsg){
 
 void givetips(string& errorType, string& tips){
     
-    if(errorType == " error C2143" or errorType == " expected ‘)’ before ‘;’ token"){
+    if(errorType == " error C2143" or str(errorType).endswith("before ‘;’ token")){
         
-        tips = "You might be missing a ')' in one of the previous lines";
+        tips = "You might be missing a terminating charachter in one of the previous lines";
+    }
+    if(errorType == " error C2065" or str(errorType).endswith("was not declared in this scope")){
+        
+        tips = "Make sure the line is not nonsense \n\tIf it isn't nonesense, make sure the identifier is defined in the given scope";
     }
 }
 

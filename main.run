@@ -1,24 +1,11 @@
-class h{
-    str l
-    public:
-        h(){
-            l = ""
-        }
-        h(str x){ 
-            l = x
-        }
-        operator fn () const{
-            return l
-        }
-
-};
-
-
-
-run main(){
+fn main(){
     ptr<int> x = new int;
     print(x);
     *x = 5;
     print(*x);
+    x.clear() // Deletes memory
+
+    print(x); // Won't print anything
+    print(*x) //this will not either
 
 }

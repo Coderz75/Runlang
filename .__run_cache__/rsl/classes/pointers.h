@@ -23,6 +23,9 @@ public:
     operator auto () const{
         return x;
     }
+    void clear(){
+        delete x;
+    }
 };
 
 

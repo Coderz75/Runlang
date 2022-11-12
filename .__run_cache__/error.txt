@@ -1,11 +1,8 @@
-main.cpp
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\ostream(450): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
-C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.33.31629\include\ostream(443): note: while compiling class template member function 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(const void *)'
-.__run_cache__/main.cpp(30): note: see reference to function template instantiation 'std::basic_ostream<char,std::char_traits<char>> &std::basic_ostream<char,std::char_traits<char>>::operator <<(const void *)' being compiled
-C:\Users\scien\Documents\Cloud_Code\Runlang\.__run_cache__\rsl\functions/print.h(15): note: see reference to class template instantiation 'std::basic_ostream<char,std::char_traits<char>>' being compiled
+runCacher.cpp
+.__run_cache__/runCacher.cpp(5): warning C4530: C++ exception handler used, but unwind semantics are not enabled. Specify /EHsc
 Microsoft (R) Incremental Linker Version 14.33.31629.0
 Copyright (C) Microsoft Corporation.  All rights reserved.
 
+/out:runCacher.exe 
 /out:main.exe 
-/out:main.exe 
-main.obj 
+runCacher.obj 

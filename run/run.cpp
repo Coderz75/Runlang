@@ -47,7 +47,7 @@ int main(int argc, char** argv)
 {
     makef();
     makeE();
-    if(system("cl 2> >.__run_cache__/error.txt")){
+    if(system("cl >.__run_cache__/reg.txt 2>.__run_cache__/error.txt")){
         if(system("g++ 2>.__run_cache__/error.txt")){
             if(noGnucCompiler()){
                 if(system("clang++ 2>.__run_cache__/error.txt")){
@@ -68,7 +68,7 @@ int main(int argc, char** argv)
     str filename = argv[1];
     writefile("#include \"rsl/rsl.h\"");
 
-
+    writefile("namespace rslCache{");
 
 
     ifstream file(filename.v);
@@ -83,15 +83,15 @@ int main(int argc, char** argv)
 
 
     }
-
+    writefile("}");
 
     //Compile
     #ifdef _WIN32
-    string x = "cl /std:c++20 /o main .__run_cache__/main.cpp >nul 2>nul >.__run_cache__/error.txt";
+    string x = "cl /std:c++20 /o main .__run_cache__/runCacher.cpp >nul 2>nul >.__run_cache__/error.txt";
 
     #elif __GNUC__
     warn("G++and clang is not fully supported yet. Use at your own risk");
-    string x = "g++ -std=c++20 -o main .__run_cache__/main.cpp 2>.__run_cache__/error.txt"; 
+    string x = "g++ -std=c++20 -o main .__run_cache__/runCacher.cpp 2>.__run_cache__/error.txt"; 
     #endif
     system(x.c_str());
     
@@ -114,8 +114,9 @@ int main(int argc, char** argv)
 
     #ifdef _WIN32
     try{
+    try{
         
-        if(errors.v[8] == "main.obj "){
+        if(errors.v[errors.v.size() - 1] == "runCacher.obj "){
 
             exit(1);
         }
@@ -135,7 +136,7 @@ int main(int argc, char** argv)
 
         string errorType = elist.v[1];
         //Calculating tips
-
+        
         string tips = "No tips found";
 
         givetips(errorType,tips);
@@ -144,21 +145,28 @@ int main(int argc, char** argv)
         for(int i = elist.v.size() - 1; i > 0;i-- ){
             fullerror = elist.v[i]  + ": "+ fullerror;
         }
-        print("\n");
+
+    
         try{
 
-            cerrorNotem(toint(line), fullerror, fcontent.v[toint(line) -1],fcontent.v[toint(line) -2],fcontent.v[toint(line) ],tips);
+            cerrorNotem(toint(line)-1, fullerror, fcontent.v[toint(line) -1-1],fcontent.v[toint(line) -2-1],fcontent.v[toint(line) -1],tips);
         }catch(...){
 
-            cerrorNotem(toint(line), fullerror, fcontent.v[toint(line) -1],fcontent.v[toint(line) -2],"",tips);
+            cerrorNotem(toint(line)-1, fullerror, fcontent.v[toint(line) -1-1],fcontent.v[toint(line) -2-1],"",tips);
 
         }
-
+        print("\n");
         }
         round +=1;
 
     }
     cerror("");
+    
+    }catch(...){
+        for(string i: errors.v){
+            print(i);
+        }
+    }
     #else 
     int round = 0;
     for(string k: errors.v){
