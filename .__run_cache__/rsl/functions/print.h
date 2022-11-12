@@ -20,6 +20,10 @@ namespace rsl{
         std::cout << x;
     }
 
+    template<typename Z>
+    static void prints(std::basic_ostream<Z> a) {
+        std::cout<<a;
+    }
 
     static void prints(int a, std::string x=""){
         std::cout << std::to_string(a);
@@ -51,6 +55,8 @@ namespace rsl{
 		}
 		std::cout << "}";
 	}
+
+
 
     void print() {
         std::cout<<std::endl;

@@ -1,5 +1,22 @@
+class h{
+    str l
+    public:
+        h(){
+            l = ""
+        }
+        h(str x){ 
+            l = x
+        }
+        operator fn () const{
+            return l
+        }
+
+};
+
+
+
 run main(){
-    ptr<int> x = new int();
+    ptr<int> x = new int;
     print(x);
     *x = 5;
     print(*x);
