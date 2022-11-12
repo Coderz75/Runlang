@@ -5,28 +5,42 @@
 #include "color/termcolor.hpp"
 
 void cerror(int line, string error, string faultline,string tips = ""){
-    cerr << termcolor::red << "ERROR: On line: " + to_string(line) + "\n\n"<<termcolor::underline<< line << "| " << faultline<<termcolor::reset<<termcolor::red<<"\n\n"<<error << termcolor::green<<"\n\nTips:\n\t" << tips << termcolor::red<< "\nCompilation Terminated\n";
-    cerr<< termcolor::reset;
+    cout << termcolor::red << "ERROR: On line: " + to_string(line) + "\n\n"<<termcolor::underline<< line << "| " << faultline<<termcolor::reset<<termcolor::red<<"\n\n"<<error << termcolor::green<<"\n\nTips:\n\t" << tips << termcolor::red<< "\nCompilation Terminated\n";
+    cout<< termcolor::reset;
     exit(EXIT_FAILURE);
 }
 
 void cerror(int line, string error, string faultline,string prevline,string nextline,string tips = ""){
-    cerr << termcolor::red << "ERROR: On line: " + to_string(line) + "\n";
+    cout << termcolor::red << "ERROR: On line: " + to_string(line) + "\n";
 
-    cerr << termcolor::reset << line-1 << "| " << prevline << "\n";
+    cout << termcolor::reset << line-1 << "| " << prevline << "\n";
 
-    cerr<< termcolor::red<<termcolor::underline<< line << "| " << faultline << "\n";
-    cerr << termcolor::reset << line +1 << "| "<< nextline;
-    cerr << termcolor::reset<<termcolor::red<<"\n\n"<<error;
-    cerr<< termcolor::green<<"\n\nTips:\n\t" << tips ;
-    cerr<<termcolor::red<< "\nCompilation Terminated\n";
-    cerr<< termcolor::reset;
+    cout<< termcolor::red<<termcolor::underline<< line << "| " << faultline << "\n";
+    cout << termcolor::reset << line +1 << "| "<< nextline;
+    cout << termcolor::reset<<termcolor::red<<"\n\n"<<error;
+    cout<< termcolor::green<<"\n\nTips:\n\t" << tips ;
+    cout<<termcolor::red<< "\nCompilation Terminated\n";
+    cout<< termcolor::reset;
     exit(EXIT_FAILURE);
 }
 
+void cerrorNotem(int line, string error, string faultline,string prevline,string nextline,string tips = ""){
+    cout << termcolor::red << "ERROR: On line: " + to_string(line) + "\n";
+
+    cout << termcolor::reset << line-1 << "| " << prevline << "\n";
+
+    cout<< termcolor::red<<termcolor::underline<< line << "| " << faultline << "\n";
+    cout << termcolor::reset << line +1 << "| "<< nextline;
+    cout << termcolor::reset<<termcolor::red<<"\n\n"<<error;
+
+    cout<< termcolor::green<<"\n\nTips:\n\t" << tips ;
+    cout<< termcolor::reset;
+
+}
+
 void cerror(string error){
-    cerr << termcolor::red << error << "\nCompilation Terminated\n";
-    cerr << termcolor::reset;
+    cout << termcolor::red << error << "\nCompilation Terminated\n";
+    cout << termcolor::reset;
     exit(EXIT_FAILURE);
 }
 

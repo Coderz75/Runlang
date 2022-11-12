@@ -5,20 +5,20 @@
 #include <iostream>
 #include "../rsl.h"
 #include <vector>
+
 namespace rsl{
     //print
 	std::string noend = "01101110~%~01101111 01100101~%~01101110~%~01100100 ";
+
 
     static void prints(std::string a, std::string x=""){
         std::cout << a;
         std::cout << x;
     }
-
     static void prints(float a, std::string x=""){
         std::cout << std::to_string(a);
         std::cout << x;
     }
-
 
 
     static void prints(int a, std::string x=""){

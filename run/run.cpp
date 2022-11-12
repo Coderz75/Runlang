@@ -32,10 +32,30 @@ fn makeE(){
     file.close();  
 }
 
+bool noGnucCompiler(){
+    ifstream file(".__run_cache__/error.txt");
+    if (file.good())
+    {
+        string sLine;
+        getline(file, sLine);
+        if(sLine == "g++: fatal error: no input files") return false;
+        else return true;
+    }
+}
+
 int main(int argc, char** argv)
 {
     makef();
     makeE();
+    if(system("cl 2> >.__run_cache__/error.txt")){
+        if(system("g++ 2>.__run_cache__/error.txt")){
+            if(noGnucCompiler()){
+                if(system("clang++ 2>.__run_cache__/error.txt")){
+                    cerror("No compiler found on system");
+                }
+            }
+        }
+    }
 
     if (argc == 1){
         print("Runlang");
@@ -49,19 +69,18 @@ int main(int argc, char** argv)
     writefile("#include \"rsl/rsl.h\"");
 
 
-    #ifdef __GNUC__
-    int lineSubtrac = -1;
-    #endif
+
 
     ifstream file(filename.v);
+    if(!file){
+        cerror("Error: File does not exist");
+    }
     while (getline (file, a)) {
         string write = a;
         fcontent.append(a);
         replaceStr(write);
         writefile(write + ";");
-        #ifdef __GNUC__
-        lineSubtrac +=1;
-        #endif
+
 
     }
 
@@ -69,16 +88,12 @@ int main(int argc, char** argv)
     //Compile
     #ifdef _WIN32
     string x = "cl /std:c++20 /o main .__run_cache__/main.cpp >nul 2>nul >.__run_cache__/error.txt";
-    #else __GNUC__
+
+    #elif __GNUC__
     warn("G++and clang is not fully supported yet. Use at your own risk");
     string x = "g++ -std=c++20 -o main .__run_cache__/main.cpp 2>.__run_cache__/error.txt"; 
     #endif
-    if(system(x.c_str())){
-        x = "clang++ -o test -std=c++20 -o main .__run_cache__/main.cpp 2>.__run_cache__/error.txt"; 
-        if(system(x.c_str())){
-            cerror("A c++ compiler does not exist on your system");
-        }
-    }
+    system(x.c_str());
     
     ifstream errorF(".__run_cache__/error.txt");
     if(!errorF){
@@ -89,47 +104,74 @@ int main(int argc, char** argv)
         errors.append(a);
     }
     errorF.close();
+
     #ifdef __GNUC__
     if(std::filesystem::is_empty(".__run_cache__/error.txt")){
         exit(1);
     }
     #endif
-    
+
 
     #ifdef _WIN32
     try{
-        if(errors.v[8] == "main.obj"){
+        
+        if(errors.v[8] == "main.obj "){
+
             exit(1);
         }
     }catch(...){}
 
-    str e = errors.v[1];
+    int round = 0;
+    for(string k: errors.v){
+        if (round !=0){
+
+        str e = k;
+
+        s::list<string> elist = e.split(":");
+
+        string line = elist.v[0];
+
+        line = str(str(line).split("(")[1]).split(")")[0];
+
+        string errorType = elist.v[1];
+        //Calculating tips
+
+        string tips = "No tips found";
+
+        givetips(errorType,tips);
+
+        string fullerror = "";
+        for(int i = elist.v.size() - 1; i > 0;i-- ){
+            fullerror = elist.v[i]  + ": "+ fullerror;
+        }
+        print("\n");
+        try{
+
+            cerrorNotem(toint(line), fullerror, fcontent.v[toint(line) -1],fcontent.v[toint(line) -2],fcontent.v[toint(line) ],tips);
+        }catch(...){
+
+            cerrorNotem(toint(line), fullerror, fcontent.v[toint(line) -1],fcontent.v[toint(line) -2],"",tips);
+
+        }
+
+        }
+        round +=1;
+
+    }
+    cerror("");
+    #else 
+    int round = 0;
+    for(string k: errors.v){
+    if (round != 0){
+    str e = k;
     s::list<string> elist = e.split(":");
 
-    string line = elist.v[0];
-
-    line = line[line.length() -1 - 1];
-    string errorType = elist.v[1];
-
-    //Calculating tips
-
-    string tips = "No tips found";
-
-    givetips(errorType,tips);
+    int line = toint(elist.v[1]);
+    line = line/2;
 
     try{
-        cerror(toint(line),elist.v[2]+ ": " + elist.v[3], fcontent.v[toint(line) -1],fcontent.v[toint(line) -2],fcontent.v[toint(line) ],tips);
-    }catch(...){
-        cerror(toint(line),elist.v[2]+ ": " + elist.v[3], fcontent.v[toint(line) -1],fcontent.v[toint(line) -2],"",tips);
-    }
-
-    #else 
-
-    str e = errors.v[1];
-    s::list<string> elist = e.split(":");
-
-    int line = toint(elist.v[1]) - lineSubtrac;
-    if (elist.v[3] != " error") exit(0);
+        if (elist.v[3] != " error") exit(0);
+    }catch (...) {exit (0);}
     string errorType = elist.v[4];
 
     //Calculating tips
@@ -137,12 +179,17 @@ int main(int argc, char** argv)
     string tips = "No tips found";
 
     givetips(errorType,tips);
-    
+    print("\n");
+
     try{
-        cerror(line,elist.v[4], fcontent.v[line -1],fcontent.v[line -2],fcontent.v[line ],tips);
+        cerrorNotem(line,elist.v[4], fcontent.v[line -1],fcontent.v[line -2],fcontent.v[line ],tips);
     }catch(...){
-        cerror(line,elist.v[2]+ ": " + elist.v[5], fcontent.v[line -1],fcontent.v[line -2],"",tips);
+        cerrorNotem(line,elist.v[2]+ ": " + elist.v[5], fcontent.v[line -1],fcontent.v[line -2],"",tips);
     }
+    }
+    round +=1;
+    }
+    cerror("");
     #endif
 
 }

@@ -11,7 +11,9 @@ namespace rsl{
             public:
                 //Operator overloading
                 friend std::ostream& operator<<(std::ostream& os, const str& string);
-
+                operator std::string () const {
+                    return v;
+                }
                 str operator+(const str& string) { //Plus: str + str
                     str new_str;
                     new_str.v = this->v + string.v;
@@ -22,9 +24,6 @@ namespace rsl{
                     new_str.v = this->v + string;
                     return new_str;
                 }       
-    			operator std::string () const { // C++ verison of __repr__
-            		return v;
-        		}
                 bool operator==(const str& string) {
                     if(this->v == string.v){
                         return true;
@@ -80,9 +79,7 @@ namespace rsl{
                 str (bool a){
                     v = a ? std::string("true") : std::string("false");
                 }
-                str(char a){
-                    v.push_back(a);
-                }
+
                 
                 //Actual stuff
                 str upper(){

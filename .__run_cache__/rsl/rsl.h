@@ -8,6 +8,7 @@ using namespace rsl;
 #include "classes/string.h"
 #include "classes/os.h"
 #include "classes/random.h"
+#include "classes/pointers.h"
 
 namespace rsl{
     #define fn auto
