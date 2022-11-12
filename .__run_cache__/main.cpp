@@ -1,29 +1,6 @@
 #include "rsl/rsl.h"
-run main(){;
-    print((rsl::string) "Welcome to Runlang");
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-;
-print((rsl::string) "";
-;
-print((rsl::string) ");
-};
+run main(){;
+    ptr<int> x = new int();;
+    print(x);;
+;
+};

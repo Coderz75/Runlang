@@ -1,28 +1,5 @@
 run main(){
-    print("Welcome to Runlang")
+    ptr<int> x = new int();
+    print(x);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-print(""
-
-print(")
 }
