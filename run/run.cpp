@@ -87,7 +87,7 @@ int main(int argc, char** argv)
 
     //Compile
     #ifdef _WIN32
-    string x = "cl /std:c++20 /o main .__run_cache__/runCacher.cpp >nul 2>nul >.__run_cache__/error.txt";
+    string x = "cl /EHsc /std:c++20 /o main .__run_cache__/runCacher.cpp >nul 2>nul >.__run_cache__/error.txt";
 
     #elif __GNUC__
     warn("G++and clang is not fully supported yet. Use at your own risk");

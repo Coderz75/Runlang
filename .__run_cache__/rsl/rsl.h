@@ -9,7 +9,7 @@ using namespace rsl;
 #include "classes/os.h"
 #include "classes/random.h"
 #include "classes/pointers.h"
-
+#include "classes/exceptions.h"
 namespace rsl{
     #define fn auto
     #define var auto
@@ -39,31 +39,41 @@ namespace rsl{
       return x;
     } 
     #endif
+
     template <typename U>
 
+    #define toint(arg) toints(arg,__LINE__)
 
-    int toint(U something);
+    int toints(U something, int line);
 
     template<>
-    int toint<float>(float something){
+    int toints<float>(float something,int line){
       return (int)something;
     }
     template<>
-    int toint<std::string>(std::string something){
-      return stoi(something);
+    int toints<std::string>(std::string something,int line){
+      try{
+        return stoi(something);
+      }catch (...){
+        throw exception("Cannot convert '" + something + "'to 'int'",__FILE__,line);
+      }
     }
 
     template<>
-    int toint<bool>(bool something){
+    int toints<bool>(bool something,int line){
         return int(something);
     }
     template<>
-    int toint<double>(double something){
+    int toints<double>(double something,int line){
         return int(something);
     }
     template<>
-    int toint<char>(char something){
+    int toints<char>(char something,int line){
         return int(something);
+    }
+    template<>
+    int toints<str>(str something,int line){
+      return toint(something.v);
     }
 
 //to string
