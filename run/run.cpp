@@ -168,6 +168,7 @@ int main(int argc, char** argv)
         }
     }
     #else 
+    try{
     int round = 0;
     for(string k: errors.v){
     if (round != 0){
@@ -198,6 +199,11 @@ int main(int argc, char** argv)
     round +=1;
     }
     cerror("");
+    }catch(...){
+        for(string i: errors.v){
+            print(i);
+        }
+    }
     #endif
 
 }
