@@ -10,6 +10,13 @@ using namespace rsl;
 #include "classes/random.h"
 #include "classes/pointers.h"
 #include "classes/exceptions.h"
+
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
+
+
 namespace rsl{
     #define fn auto
     #define var auto
@@ -42,38 +49,35 @@ namespace rsl{
 
     template <typename U>
 
-    #define toint(arg) toints(arg,__LINE__)
+    #define toint(arg) toints(arg,__LINE__,__FILE__)
 
-    int toints(U something, int line);
 
-    template<>
-    int toints<float>(float something,int line){
+    int toints(float something,int line,auto file){
       return (int)something;
     }
-    template<>
-    int toints<std::string>(std::string something,int line){
+
+    int toints(std::string something,int line,auto file){
       try{
         return stoi(something);
       }catch (...){
-        throw exception("Cannot convert '" + something + "'to 'int'",__FILE__,line);
+        throw exception("Cannot convert '" + something + "'to 'int'",file,line);
       }
     }
 
-    template<>
-    int toints<bool>(bool something,int line){
+    int toints(bool something,int line,auto file){
         return int(something);
     }
-    template<>
-    int toints<double>(double something,int line){
+
+    int toints(double something,int line,auto file){
         return int(something);
     }
-    template<>
-    int toints<char>(char something,int line){
+
+    int toints(char something,int line,auto file){
         return int(something);
     }
-    template<>
-    int toints<str>(str something,int line){
-      return toint(something.v);
+
+    int toints(str something,int line,auto file){
+      return toints(something.v,line,file);
     }
 
 //to string

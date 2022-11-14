@@ -9,13 +9,14 @@ class ptr {
     T* x; // Actual pointer
 public:
 
-    explicit ptr(T* p = NULL) {
+    ptr(T* p = NULL) {
         x = p; 
 
     }
     #ifndef __GNUC__
     ~ptr() {if (x!=NULL) delete (x); x = NULL;}
     #endif
+
     T& operator*() {return *x;}
  
 

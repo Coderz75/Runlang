@@ -2,10 +2,8 @@
 namespace rslCache{
 fn main(){;
 ;
-    ptr<int> x (new int());;
-    print(x);
-    *x = 5;
-    print(*x);
+    var z = toint(input((rsl::string) "Enter an int: "));
+    print(z);
 ;
 };
 }
