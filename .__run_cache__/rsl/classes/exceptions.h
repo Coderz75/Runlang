@@ -12,7 +12,7 @@ public:
     exception(const std::string &arg, const char *file, int line) :
     std::runtime_error(arg) {
         std::ostringstream o;
-        o << "In file: "<< file << "\nLine: " << line << "\n" << arg;
+        o << "In file: "<< file << "\nLine: " << line-1 << "\n" << arg;
         msg = o.str();
     }
     ~exception() throw() {}

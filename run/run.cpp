@@ -66,9 +66,9 @@ int main(int argc, char** argv)
     }
     string a;
     str filename = argv[1];
-    writefile("#include \"rsl/rsl.h\"");
 
     writefile("namespace rslCache{");
+    writefile("#include \"rsl/rsl.h\"");
 
 
     ifstream file(filename.v);
