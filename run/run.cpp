@@ -4,9 +4,12 @@
 #include <fstream>
 #include <filesystem>
 #include "parser.h"
-
+#include "global.h"
 
 #include s_all
+
+str fileContent;
+s::list<string> fcontent;
 
 #ifdef __GNUC__
 #pragma GCC diagnostic push
@@ -15,13 +18,8 @@
 
 
 
-str fileContent;
-s::list<string> fcontent;
 
-fn writefile(string a){
-    ofstream file(".__run_cache__/main.h",std::ios_base::app);
-    file << a << "\n";
-}
+
 fn makef(){
     ofstream file(".__run_cache__/main.h");
     file.close();
@@ -79,6 +77,7 @@ int main(int argc, char** argv)
         string write = a;
         fcontent.append(a);
         replaceStr(write);
+        handleIncludes(write);
         writefile(write + ";");
 
 

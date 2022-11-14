@@ -1,6 +1,8 @@
+import cool.run
+
 fn main(){
 
     var z = toint(input("Enter an int: "))
     print(z)
-
+    test()
 }
