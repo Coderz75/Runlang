@@ -81,12 +81,18 @@ filetowrite = fpath + "." + filetowrite
 
 sdebug("Writing to file: " + filetowrite)
 
+try:
+    os.remove(filetowrite)
+    print("We have deleted the file: " + filetowrite)
+except:
+    """"""
+
 f = open(filetowrite, "w")
 
 cachePath = os.path.dirname(os.path.abspath(__file__))
 cachePath = cachePath.replace("\\","/")
 
-f.write("#include \""+ cachePath + "/.__run_cache__/rsl/rsl.h" + "\"\n")
+f.write("#include \""+ cachePath + "/rsl/rsl.h" + "\"\n")
 
 for x in fwrite:
     f.write(x)
@@ -132,8 +138,20 @@ sdebug("Compiling!")
 
 if compiler == "cl":
     proc = subprocess.run(
-        ["cl","/EHsc","/std:c++20","/o",file[:-4],filetowrite],
+        ["cl",filetowrite,"/EHsc","/std:c++20","/link","/out:" + file[:-4] + ".exe"],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True
     )
+
+
+elif compiler == "g++":
+    proc = subprocess.run(
+        ["g++","-std=c++20","-o",file[:-4], filetowrite],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True
+    )
+
+if not debug:
+    os.remove(filetowrite)
