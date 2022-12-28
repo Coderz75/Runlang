@@ -17,7 +17,7 @@ def error(e):
     sys.exit()
 
 commands = 0
-
+compiler = ""
 e = sys.argv[1:]
 
 for item in e:
@@ -35,14 +35,14 @@ for item in e:
         file = item
         
 if commands ==0:
-    error("No file detected")
+    error("No input file entered.")
 del commands
 
 
 sdebug("Arguments follow: " + str(e))
 
 if not os.path.exists(os.path.abspath(file)):
-    error("File does not exist")
+    error("Cannot find file: " + os.path.abspath(file))
 
 if not file.endswith(".run"):
     error("Invalid file")
@@ -102,34 +102,34 @@ if os.name == 'nt' and not debug:
     subprocess.check_call(["attrib","+H",filetowrite])
 
 sdebug("Detecting Compiler..")
-
-try:
-    proc = subprocess.run(
-        ["cl"],
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True
-    )
-    compiler = "cl"
-except:
+if compiler == "":
     try:
         proc = subprocess.run(
-            ["g++"],
+            ["cl"],
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True
         )
-        compiler = "g++"
+        compiler = "cl"
     except:
         try:
             proc = subprocess.run(
-            ["clang++"],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True
+                ["g++"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True
             )
+            compiler = "g++"
         except:
-            error("No compiler found on system. ")
+            try:
+                proc = subprocess.run(
+                ["clang++"],
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True
+                )
+            except:
+                error("No compiler found on system. ")
 
 sdebug("Compiler detected: " + compiler)
 
@@ -142,7 +142,8 @@ if compiler == "cl":
         stderr=subprocess.PIPE,
         text=True
     )
-
+    sdebug(proc.stderr)
+    sdebug(proc.stdout)
 
 elif compiler == "g++":
     proc = subprocess.run(
@@ -154,3 +155,8 @@ elif compiler == "g++":
 
 if not debug:
     os.remove(filetowrite)
+    if compiler == "cl":
+        try:
+            os.remove(filetowrite[:-4] + ".obj")
+        except:
+            """Do nothing"""

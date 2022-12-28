@@ -1,6 +1,5 @@
-int main(){
-
-    var z = toint(input("Enter an int: "))
-    print(z)
-
+run main(int argc, char *argv[]){
+    print("You have entered",argc,"Arguments")
+    print("Arguments follow", argv)
+    
 }
