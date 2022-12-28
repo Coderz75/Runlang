@@ -1,5 +1,5 @@
-#ifndef RANDOM_H
-#define RANDOM_H
+#ifndef RSL_RANDOM_H
+#define RSL_RANDOM_H
 #include <iostream>
 #ifndef _WIN32
 #include <climits>

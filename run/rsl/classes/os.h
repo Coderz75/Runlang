@@ -1,5 +1,5 @@
-#ifndef OS_H
-#define OS_H
+#ifndef RSL_OS_H
+#define RSL_OS_H
 
 #include "../rsl.h"
 

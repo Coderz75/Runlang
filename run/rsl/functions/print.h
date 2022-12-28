@@ -1,5 +1,5 @@
-#ifndef PRINT_H
-#define PRINT_H
+#ifndef RSL_PRINT_H
+#define RSL_PRINT_H
 
 #include <string>
 #include <iostream>

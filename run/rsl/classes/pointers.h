@@ -1,5 +1,5 @@
-#ifndef POINTERS_H
-#define POINTERS_H
+#ifndef RSL_POINTERS_H
+#define RSL_POINTERS_H
 
 #include <iostream>
 #include "../rsl.h"

@@ -1,5 +1,5 @@
-#ifndef EXCEPTIONS_H
-#define EXCEPTIONS_H
+#ifndef RSL_EXCEPTIONS_H
+#define RSL_EXCEPTIONS_H
 #include <iostream>
 #include <sstream>
 #include <stdexcept>

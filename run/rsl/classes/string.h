@@ -1,5 +1,5 @@
-#ifndef STRING_H
-#define STRING_H
+#ifndef RSL_STRING_H
+#define RSL_STRING_H
 #include <vector>
 #include <string>
 #include <algorithm>
