@@ -1,5 +1,8 @@
 run main(int argc, char *argv[]){
     print("You have entered",argc,"Arguments")
-    print("Arguments follow", argv)
-    
+    print("Arguments follow")
+
+    for (int i = 1; i < argc; ++i){
+        print(argv[i])
+    }
 }

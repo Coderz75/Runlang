@@ -3,7 +3,7 @@
 
 #include <string>
 #include <iostream>
-#include "../rsl.h"
+#include "../classes/exceptions.h"
 #include <vector>
 
 namespace rsl{
@@ -24,7 +24,12 @@ namespace rsl{
 
     template<typename First, typename ... Strings>
     void print(First arg, const Strings&... rest) {
-        std::cout << arg;
+        try{
+            std::cout << arg;
+        }catch(...){
+            raise("Cannot print argument");
+        }
+        
         std::cout <<" ";
         print(rest...);
     }

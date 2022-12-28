@@ -19,6 +19,7 @@ def error(e):
 commands = 0
 compiler = ""
 e = sys.argv[1:]
+addsemicolon = True
 
 for item in e:
     if item.startswith("--"):
@@ -26,6 +27,8 @@ for item in e:
             debug = True
         elif item == "--NoConvert":
             convertrsl = False
+        elif item == "--noAddSemicolon":
+            addsemicolon = False
         else:
             error("No knowm configuration, called: " + item)
     else:
@@ -59,7 +62,7 @@ data = []
 f = open(fpath + file, "r")
 
 for x in f:
-  data.append(x)
+    data.append(x)
 
 f.close()
 del f
@@ -69,10 +72,13 @@ sdebug("Processing file...")
 fwrite = []
 
 for x in data:
-    write = x
+    write = x.rstrip()
     if convertrsl:
         write = fparser.replaceStr(write)
-    fwrite.append(write + ";")
+    if addsemicolon:
+        write += ";"
+    write += "\n"
+    fwrite.append(write)
 
 filetowrite = file[:-4]
 filetowrite += ".cpp"
