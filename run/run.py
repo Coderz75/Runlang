@@ -77,13 +77,12 @@ for x in data:
 filetowrite = file[:-4]
 filetowrite += ".cpp"
 
-filetowrite = fpath + "." + filetowrite
+filetowrite = fpath + ".__RUNCACHE__" + filetowrite
 
 sdebug("Writing to file: " + filetowrite)
 
 try:
     os.remove(filetowrite)
-    print("We have deleted the file: " + filetowrite)
 except:
     """"""
 
