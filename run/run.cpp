@@ -32,6 +32,8 @@ int main(int argc, char *argv[]){
 
     #else
         string x(std::filesystem::canonical("/proc/self/exe"));
+        size_t found = x.find_last_of("/\\");
+        x = x.substr(0, found);
         system(("python3 " + x + "/run.py " + fstring).c_str());
     #endif
 }
