@@ -21,6 +21,8 @@ compiler = ""
 e = sys.argv[1:]
 addsemicolon = True
 
+i = 0
+outname = ""
 for item in e:
     if item.startswith("--"):
         if item == "--debug":
@@ -31,16 +33,30 @@ for item in e:
             addsemicolon = False
         else:
             error("No knowm configuration, called: " + item)
+    elif item.startswith("-"):
+        if item == "-o":
+            """"""
+            try:
+                outname = e[i+1]
+                if os.name == 'nt':
+                    outname += ".exe"
+                e.pop(i+1)
+                
+            except:
+                error("Output name not entered")
+        else:
+            error("No none configuration: " + item)
     else:
         if commands > 1:
             error("To many commands")
         commands += 1
         file = item
+    i += 1
         
 if commands ==0:
     error("No input file entered.")
 del commands
-
+del i
 
 sdebug("Arguments follow: " + str(e))
 
@@ -49,6 +65,9 @@ if not os.path.exists(os.path.abspath(file)):
 
 if not file.endswith(".run"):
     error("Invalid file")
+
+if outname == "":
+    outname = file[:-4] + ".exe"
 
 fpath = os.path.abspath(file)
 
@@ -143,7 +162,7 @@ sdebug("Compiling!")
 
 if compiler == "cl":
     proc = subprocess.run(
-        ["cl",filetowrite,"/EHsc","/std:c++20","/link","/out:" + file[:-4] + ".exe"],
+        ["cl",filetowrite,"/EHsc","/std:c++20","/link","/out:" + outname],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True
@@ -153,7 +172,7 @@ if compiler == "cl":
 
 elif compiler == "g++":
     proc = subprocess.run(
-        ["g++","-std=c++20","-o",file[:-4], filetowrite],
+        ["g++","-std=c++20","-o", outname, filetowrite],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True
