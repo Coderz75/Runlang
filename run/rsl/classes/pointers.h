@@ -9,7 +9,7 @@ class ptr {
     T* x; // Actual pointer
 public:
 
-    ptr(T* p = NULL) {
+    explicit ptr(T* p = NULL) {
         x = p; 
 
     }

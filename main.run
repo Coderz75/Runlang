@@ -1,8 +1,4 @@
-run main(int argc, char *argv[]){
-    print("You have entered",argc,"Arguments")
-    print("Arguments follow")
-
-    for (int i = 1; i < argc; ++i){
-        print(argv[i])
-    }
+run main(){
+    num x = -4;
+    print(x)
 }

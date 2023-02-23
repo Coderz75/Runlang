@@ -12,9 +12,13 @@ def sdebug(e):
     if debug:
         print("\33[33m(DEBUG) " + e + "\033[0m\n")
 
-def error(e):
-    print("\033[91m(ERROR) " + e + "\nCompilation terminated\033[0m")
-    sys.exit()
+def error(e,acterror = False,file = "",line: int = 0, linedata = "",prevline = "",nextline = "", tips = None):
+    if not acterror:
+        print("\033[91m(ERROR) " + e + "\nCompilation terminated\033[0m")
+        sys.exit()
+    print(f"\033[91m(ERROR)\n{file} on line: {line} \n\33[33m{line-1}| {prevline} \n\33[31m{line}| {linedata} \n\33[33m{line+1}| {nextline} \n{e}\033[0m")
+    if tips:
+        print(f"\33[4mTips: \n{tips}\033[0m\n")
 
 commands = 0
 compiler = ""
@@ -167,8 +171,38 @@ if compiler == "cl":
         stderr=subprocess.PIPE,
         text=True
     )
-    sdebug(proc.stderr)
-    sdebug(proc.stdout)
+    objfile = filetowrite.split("\\")
+    objfile = objfile[len(objfile) - 1]
+    objfile = objfile[:-4] + ".obj"
+    if not proc.stdout.rstrip().endswith(objfile):
+        ferror = proc.stdout.split("\n")
+        i = 0
+        try:
+            for item in ferror:
+                if i == 0:
+                    i+=1
+                    pass
+                line = item.split("(")[1]
+                line = int(item.split(")")[0])
+                efile = item.split("(")[0]
+                error =item.split(":",1)[1]
+                if efile == filetowrite:
+                    """"""
+                    prevline = "Placeholder"
+                    nextline = "Placeholder"
+                    linedata = "Placholder"
+                    line -=1
+                    if line ==1:
+                        """"""
+                        prevline = ""
+                    elif line == len(data):
+                        """"""
+                    
+                else:
+                    """"""
+                i+=1
+        except:
+            error(proc.stdout)
 
 elif compiler == "g++":
     proc = subprocess.run(
@@ -177,6 +211,7 @@ elif compiler == "g++":
         stderr=subprocess.PIPE,
         text=True
     )
+ 
 
 if not debug:
     os.remove(filetowrite)

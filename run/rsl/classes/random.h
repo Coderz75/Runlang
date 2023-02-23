@@ -6,27 +6,26 @@
 #endif
 namespace rsl{
 
-class r{
+class RUN_CACHER_RANDOM{
     public:
 
-        int randint(int num){
+        int rint(int num){
 
                 return std::rand() % num + 0;   
 
         }
-        int randint(int min, int max){
+        int rint(int min, int max){
 
                 return std::rand()%(max-min + 1) + min;
 
         }
-        int randint(){
+        int rint(){
 
                 return std::rand()% INT_MAX;
-
         }
 };
 
-r random;
+RUN_CACHER_RANDOM random;
 
 }
 
