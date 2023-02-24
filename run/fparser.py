@@ -4,12 +4,12 @@ def replaceStr(y):
     h = y
     instr = True
     i = 0
-    for x in h:
-        l = h[0]
-        if l == '"':
+    while (i < len(y)):
+        x = y[i]
+        if x == '"':
             instr = not instr
-            if (instr):
-                h.replace(i,1,strconv + "\"")
+            if (not instr):
+                h = h[:i] + strconv + h[i:]
                 i+=len(strconv) 
-    
+        i+=1
     return h

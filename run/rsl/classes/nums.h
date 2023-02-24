@@ -4,13 +4,21 @@
 #include <iostream>
 #include <string>
 #include <stack>
-
+#include "../rsl.h"
 
 class num{
     private:
         std::string number = "";
     public:
-        friend std::ostream& operator<<(std::ostream& os, const num& e);
+
+        // Overloading
+        friend std::ostream& operator<<(std::ostream& os, const num& e); // << 
+        
+        num operator*(const long double& x){
+            std::string v= std::to_string(x);
+        }
+
+        //Constructors
         num(long long x){
             long long z = x;
             std::string signValue = "";
@@ -31,6 +39,16 @@ class num{
                 stringStack.pop();
             }
         }
+        num(rsl::str v){
+            for (int i = 0; i < v.v.size(); i++){
+                try{
+                    std::stoi(v);                   
+                }catch (...){
+                    raise("Invalid string to int conversion.");
+                }
+            }
+        }
+        
 };
 
 std::ostream& operator<<(std::ostream& os, const num& e)
