@@ -15,7 +15,20 @@ class num{
         friend std::ostream& operator<<(std::ostream& os, const num& e); // << 
         
         num operator*(const long double& x){
-            std::string v= std::to_string(x);
+            int carry = 0;
+            for (int i = number.length() - 1; i >= 0; i--){
+                int digit = number[i] - '0';
+                int res = digit * x + carry;
+                number[i] = char(48 + (res % 10)); // 48 is ascii for 0
+                carry = std::ceil(res / 10);
+            }
+
+            if (carry){
+                number = std::to_string(carry) + number;
+            }
+
+            return *this;
+            
         }
 
         //Constructors
@@ -42,11 +55,13 @@ class num{
         num(rsl::str v){
             for (int i = 0; i < v.v.size(); i++){
                 try{
+                    if (v.v[i] != '.' and v.v[i] != '-')
                     std::stoi(v);                   
                 }catch (...){
                     raise("Invalid string to int conversion.");
                 }
             }
+            number = v.v;
         }
         
 };

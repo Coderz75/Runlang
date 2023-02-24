@@ -1,5 +1,4 @@
 run main(){
-    num x = -4;
-    var y = "Hello";
-    print(x)
+    num x = 12;
+    print(x*3)
 }
