@@ -12,15 +12,15 @@ class num{
     public:
 
         // Overloading
-        friend std::ostream& operator<<(std::ostream& os, const num& e); // << 
+        friend std::ostream& operator<<(std::ostream& os, const num& e); //  << 
         
-        num operator*(const long double& x){
+        num operator*(const long double& x){ //                              *
             int carry = 0;
             std::string y = number;
             for (int i = y.length() - 1; i >= 0; i--){
                 int digit = y[i] - '0';
                 int res = digit * x + carry;
-                y[i] = char(48 + (res % 10)); // 48 is ascii for 0
+                y[i] = char(48 + (res % 10)); 
                 carry = std::ceil(res / 10);
             }
 

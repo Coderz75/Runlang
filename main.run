@@ -1,4 +1,4 @@
 run main(){
-    num x = 12;
-    print(x*3)
+    num x = 10
+    print(x*10)
 }
