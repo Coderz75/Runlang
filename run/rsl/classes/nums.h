@@ -16,18 +16,18 @@ class num{
         
         num operator*(const long double& x){
             int carry = 0;
-            for (int i = number.length() - 1; i >= 0; i--){
-                int digit = number[i] - '0';
+            std::string y = number;
+            for (int i = y.length() - 1; i >= 0; i--){
+                int digit = y[i] - '0';
                 int res = digit * x + carry;
-                number[i] = char(48 + (res % 10)); // 48 is ascii for 0
+                y[i] = char(48 + (res % 10)); // 48 is ascii for 0
                 carry = std::ceil(res / 10);
             }
 
             if (carry){
-                number = std::to_string(carry) + number;
+                y = std::to_string(carry) + y;
             }
-
-            return *this;
+            return num(y);
             
         }
 
