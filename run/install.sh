@@ -16,5 +16,5 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
-python3 "$(dirname "$(realpath $0)")/run.py" $@
+DIR=$(pwd)
+echo "alias startl="$DIR"/startl.sh" >> ~/.bashrc 

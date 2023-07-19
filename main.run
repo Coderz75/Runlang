@@ -1,4 +1,5 @@
+#source/rsl
+
 run main(){
-    print("Welcome to runlang!")
-    
+    print("Welcome to runlang!");
 }
