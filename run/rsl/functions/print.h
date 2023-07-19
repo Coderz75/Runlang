@@ -11,7 +11,7 @@ namespace rsl{
 	std::string noend = "01101110~%~01101111 01100101~%~01101110~%~01100100 ";
 
     void print() {
-        std::cout<<std::endl;
+        std::cout<<"\n";
     }
 
     void print(std::string arg) {

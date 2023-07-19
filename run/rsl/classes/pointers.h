@@ -6,23 +6,17 @@
 #include "exceptions.h"
 template <class T>
 class ptr {
-    T* x; // Actual pointer
+    int* pointer; // Actual pointer
 public:
-
-    explicit ptr(T* p = NULL) {
-        x = p; 
-
-    }
-    #ifndef __GNUC__
-    ~ptr() {if (x!=NULL) delete (x); x = NULL;}
-    #endif
-
-    T& operator*() {return *x;}
+    // Constructor: Refer https:// www.geeksforgeeks.org/g-fact-93/
+    // for use of explicit keyword
+    explicit ptr(int* p = NULL) { pointer = p; }
  
-
-    T* operator->() {return x;}
-    
-    operator auto () const{return x;}
+    // Destructor
+    ~ptr() { delete (pointer); }
+ 
+    // Overloading dereferencing operator
+    int& operator*() { return *pointer; }
 };
 
 #endif
