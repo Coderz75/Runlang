@@ -1,5 +1,7 @@
-#source/rsl
+    #source/rsl
 
-run main(){
-    print("Welcome to runlang!");
-}
+    fn main(){
+        print("Welcome to runlang!");
+        var my_input = input("Enter something here> ");
+        print(my_input);
+    }

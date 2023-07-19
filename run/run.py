@@ -121,6 +121,8 @@ for x in data:
         cachePath = cachePath.replace("\\","/")
 
         write = "#include \""+ cachePath + "/rsl/rsl.h" + "\""
+    if x.lstrip().startswith("fn main"):
+        write = write.replace("fn","int")
     write += "\n"
     fwrite.append(write)
 
