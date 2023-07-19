@@ -71,7 +71,7 @@ if not file.endswith(".run"):
     error("Invalid file")
 
 if outname == "":
-    outname = file[:-4] + ".exe"
+    outname = file[:-4]
 
 fpath = os.path.abspath(file)
 
@@ -211,8 +211,9 @@ elif compiler == "g++":
         stderr=subprocess.PIPE,
         text=True
     )
- 
-
+    sdebug(" ".join(["g++","-std=c++20","-o", outname, filetowrite]))
+    if proc.stderr != "":
+        error(proc.stderr)
 if not debug:
     os.remove(filetowrite)
     if compiler == "cl":
