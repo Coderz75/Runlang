@@ -19,6 +19,8 @@
 #ifndef RSL_RANDOM_H
 #define RSL_RANDOM_H
 #include <iostream>
+#include <time.h>
+#include <cmath>
 #ifndef _WIN32
 #include <climits>
 #endif
@@ -26,24 +28,33 @@ namespace rsl{
 
 class RUN_CACHER_RANDOM{
     public:
-
-        int rint(int num){
-
-                return std::rand() % num + 0;   
-
+        RUN_CACHER_RANDOM(){
+                srand(time(0));
         }
         int rint(int min, int max){
-
                 return std::rand()%(max-min + 1) + min;
-
         }
         int rint(){
-
                 return std::rand()% INT_MAX;
+        }
+        float rfloat(int precision = 2){
+                auto max = INT_MAX - 1;
+                auto min = INT_MIN + 1;
+                auto e = std::rand()%(max-(min) + 1) + min;
+                auto f = e/precision;
+                return f;
+        }
+        float rfloat(int min, int max, int precision = 2){
+                auto m = pow(10, precision);
+                max *= m;
+                min *= m;
+                auto e = std::rand()%(max-(min) + 1) + min;
+                auto f = e/m;
+                return f;
         }
 };
 
-RUN_CACHER_RANDOM random;
+RUN_CACHER_RANDOM Random;
 
 }
 

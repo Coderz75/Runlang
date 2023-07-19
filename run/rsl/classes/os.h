@@ -30,9 +30,6 @@ class RUN_CACHER_OS{
         void exec(str cmd){
             std::system(cmd.c_str());
         }
-        void exec(std::string cmd){
-            std::system(cmd.c_str());
-        }
 };
 
 RUN_CACHER_OS os;

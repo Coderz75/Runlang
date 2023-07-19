@@ -166,6 +166,7 @@ namespace rsl{
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wwrite-strings"
+#pragma GCC diagnostic ignored "-Woverflow"
 #endif
 
 

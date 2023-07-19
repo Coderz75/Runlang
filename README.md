@@ -72,6 +72,7 @@ The RunLang standard library is well, RunLang's standard library. To add it, add
 The rsl library has many features inside of it, which will be attempted to be documented below.
 
 - [Input, Output (I/O)](#rsl_io)
+- [Random](#rsl_random)
 
 <h3 id = "rsl_io">Input, Output (I/O)</h3>
 
@@ -100,3 +101,7 @@ The input function returns a `rsl::str` (RunLang string). It can take in an opti
 > var my_input = input("Enter your age: ") // Output: Enter your age: (now you may type)
 
 > var my_input = input() // Output: __ (Nothingm, and you may type input)
+
+<h3 id = "rsl_random">Random</h3>
+
+Random is a class written in c++ to make random numbers
