@@ -3,4 +3,4 @@ One thing to note before using RunLang. It compiles directly into c++. Any error
 
 <h2>Libraries:</h2>
 
-- [RunLang Standard Library (rsl)](#rsl)
+- [RunLang Standard Library (rsl)](./Runlang-Standard-Library/Runlang-Standard-Library.md)
