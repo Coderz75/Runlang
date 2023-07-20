@@ -2,9 +2,6 @@ remote_theme: just-the-docs/just-the-docs
 plugins:
 - jekyll-remote-theme # add this line to the plugins list if you already have one
 
-title: RunLang
-description: A c++ based language to bring the ease of python to the speed of c
-show_downloads: true
 # Welcome to Jekyll!
 #
 # This config file is meant for settings that affect your whole site, values
@@ -24,7 +21,7 @@ title: Runlang
 description: A c++ based language that brings the ease of python to the speed of c++
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://coderz75.github.io/runlang" # the base hostname & protocol for your site, e.g. http://example.com
-repository: just-the-docs/just-the-docs # for github-metadata
+repository: coderz75/runlang # for github-metadata
 
 permalink: pretty
 
@@ -147,7 +144,7 @@ plugins:
 kramdown:
   syntax_highlighter_opts:
     block:
-      line_numbers: false
+      line_numbers: True
 
 compress_html:
   clippings: all
