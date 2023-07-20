@@ -11,4 +11,4 @@ RunLang is a coding language that is based on c++. It is cross compatible with c
 ## Table of Cometents
 - [Download](./docs/Download.md)
 - [Getting started](./docs/Getting-started.md)
-- [Documentation](./docs//Documentation//Documentation.md)
+- [Documentation](./docs//Documentation//Documentation.md) 
