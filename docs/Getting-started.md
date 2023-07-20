@@ -22,4 +22,4 @@
         print(my_input);
     }
 ```
-6. Happy Coding! 
+6. Happy Coding!
