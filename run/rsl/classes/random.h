@@ -35,7 +35,9 @@ class RUN_CACHER_RANDOM{
                 return std::rand()%(max-min + 1) + min;
         }
         int rint(){
-                return std::rand()% INT_MAX;
+                auto max = INT_MAX - 1;
+                auto min = INT_MIN + 1;
+                return std::rand()% (max-min + 1) + min;
         }
         float rfloat(int precision = 2){
                 auto max = INT_MAX - 1;
