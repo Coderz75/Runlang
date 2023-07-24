@@ -8,4 +8,6 @@ show_downloads: true
 aux_links:
   "Coderz75":
   - "coderz75.github.io"
-  
+logo: "./logo.jpg"
+favicon_ico: "./logo.jpg"
+color_scheme: dark
