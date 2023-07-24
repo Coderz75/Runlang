@@ -6,7 +6,6 @@ title: RunLang
 description: A c++ based language to bring the ease of python to the speed of c
 show_downloads: true
 aux_links:
-  "Download":
-    - "//github.com/Runlang/Download.md"
-  "Getting Started":
-    - "//github.com/Runlang/Download.md"
+  "Coderz75":
+  - "coderz75.github.io"
+  

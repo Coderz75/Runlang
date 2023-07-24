@@ -2,7 +2,6 @@
 layout: page
 title: "RSL I/O"
 permalink: /docs/rsl/io
-parent: "Runlang Standard Library"
 ---
 <h3 id = "rsl_io">Input, Output (I/O)</h3>
 

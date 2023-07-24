@@ -3,7 +3,7 @@ layout: page
 title: "Runlang Standard Library"
 permalink: /docs/rsl
 parent: "Documentation"
-has_children: true
+
 ---
 <h2 id = "rsl">RunLang standard library (rsl)</h2>
 
