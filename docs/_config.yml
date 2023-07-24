@@ -7,7 +7,9 @@ description: A c++ based language to bring the ease of python to the speed of c
 show_downloads: true
 aux_links:
   "Coderz75":
-  - "coderz75.github.io"
+  - "//coderz75.github.io"
+  "Runlang on Github":
+  - "//github.com/coderz75/runlang"
 logo: "./logo.jpg"
 favicon_ico: "./logo.jpg"
 color_scheme: dark
