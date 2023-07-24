@@ -2,7 +2,7 @@
 
 RunLang is held under the [GPL Generic Public v3 License](./LICENSE)
 
-<img src="logo.jpg"
+<img src="./docs/logo.jpg"
      alt="RunLang Logo"
      style="height: 400px;"/>
 
