@@ -2,6 +2,7 @@
 layout: page
 title: "Random"
 permalink: /docs/rsl/random
+parent: "Runlang Standard Library"
 ---
 <h3 id = "rsl_random">Random</h3>
 
