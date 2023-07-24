@@ -1,7 +1,8 @@
+---
 layout: page
 title: "Getting Started"
 permalink: /getting-started
-
+---
 <h2 id = "start">Getting started</h2>
 
 1. To get started, create a `main.run` file in your chosen directory
