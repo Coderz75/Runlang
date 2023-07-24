@@ -15,4 +15,5 @@ void os.exec(rsl::string command);
 > os.exec("ls");  // Lists all files in directory
 > os.exec("cd ~"); // navigates to the home directory
 
-{: .warning } The `os.exec` command runs the same way as the `system()` function in c++. Meaning, it is possible to run multiple commands in the same line with a semicolon (`;`), and hackers may use input to enter malicious commands into a system. Please remember to clean any data passed into the command (by for example limiting semicolons) in order to prevent such attacks from happening.
+>**Warning**
+> The `os.exec` command runs the same way as the `system()` function in c++. Meaning, it is possible to run multiple commands in the same line with a semicolon (`;`), and hackers may use input to enter malicious commands into a system. Please remember to clean any data passed into the command (by for example limiting semicolons) in order to prevent such attacks from happening.
