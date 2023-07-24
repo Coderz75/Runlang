@@ -5,5 +5,8 @@ plugins:
 title: RunLang
 description: A c++ based language to bring the ease of python to the speed of c
 show_downloads: true
-nav_order: 4
-has_children: true
+aux_links:
+  "Download":
+    - "//github.com/Runlang/Download.md"
+  "Getting Started":
+    - "//github.com/Runlang/Download.md"
