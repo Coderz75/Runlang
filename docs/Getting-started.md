@@ -1,3 +1,6 @@
+layout: page
+title: "Getting Started"
+permalink: /getting-started
 
 <h2 id = "start">Getting started</h2>
 

@@ -1,3 +1,7 @@
+layout: page
+title: "Download"
+permalink: /download
+
 <h1 id = "download">Download</h1>
 
 The only way to download RunLang at the moment is to clone the repo. (This may be subject to chain the the language grows)
