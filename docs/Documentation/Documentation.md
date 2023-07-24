@@ -3,6 +3,7 @@ layout: page
 title: "Documentation"
 permalink: /docs
 has_children: true
+nav_order: 4
 ---
 
 <h1 id = "docs">Documentation</h1>

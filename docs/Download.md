@@ -2,6 +2,7 @@
 layout: page
 title: "Download"
 permalink: /download
+nav_order: 2
 ---
 <h1 id = "download">Download</h1>
 

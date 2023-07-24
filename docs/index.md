@@ -1,3 +1,9 @@
+---
+layout: page
+title: "Home"
+nav_order: 1
+---
+
 # RunLang
 
 RunLang is held under the [GPL Generic Public v3 License](./LICENSE)

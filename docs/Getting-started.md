@@ -2,6 +2,7 @@
 layout: page
 title: "Getting Started"
 permalink: /getting-started
+nav_order: 3
 ---
 <h2 id = "start">Getting started</h2>
 
