@@ -1,11 +1,5 @@
-    #source/rsl
+#source/rsl
 
-    fn main(){
-        print("Welcome to runlang!");
-        var my_input = input("Enter something here> ");
-        print(my_input);
-        var r_float = Random.rfloat(2);
-        print(r_float);
-        r_float = Random.rfloat(0,10,2);
-        print(r_float);
-    }
+fn main(){
+    raise("Hello!");
+}

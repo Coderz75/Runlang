@@ -14,6 +14,3 @@ The RunLang standard library is well, RunLang's standard library. To add it, add
 ```
 
 The rsl library has many features inside of it, which will be attempted to be documented below.
-
-- [Input, Output (I/O)](./Input-Output.md)
-- [Random](./Random.md)
