@@ -11,4 +11,4 @@ RunLang is held under the [GPL Generic Public v3 License](./LICENSE)
 
 RunLang is a coding language that is based on c++. It is cross compatible with c++, and has a plethora of features so you can spend more time coding instead of screaming at why something doesn't work
 
-Head over to [the website](coderz75.github.io/runlang) to see read the documentation
+Head over to [the website](https://coderz75.github.io/Runlang/) to look the documentation, installation, and other stuff
