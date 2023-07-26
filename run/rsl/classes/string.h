@@ -79,6 +79,9 @@ namespace rsl{
                 str(char* a){
                     v = a;
                 }
+                str(const char * a){
+                    v = a;
+                }
                 str(){
                     v = "";
                 }
@@ -137,11 +140,6 @@ namespace rsl{
                   }
                 return{v};
                 }
-                str capitilize(){
-                    std::string a = v;
-                    a[0] = toupper(a[0]); 
-                    return a;
-                }
                 bool isupper(){
                     std::string* m;
                     m = new std::string;
@@ -171,12 +169,12 @@ namespace rsl{
                     return true;
                 }
 
-                str center(int s, std::string a = " "){
+                str center(int s, rsl::str a = " "){
                     int* spaces ;
                     spaces = new int;
                     *spaces = s - v.length();
                     *spaces = *spaces/2;
-                    std::string returnval = v;
+                    rsl::str returnval = v;
                     for(int i = 0; i<*spaces; i++){
                         returnval = a + returnval;
                     }
@@ -186,14 +184,6 @@ namespace rsl{
                     delete spaces;
                     return returnval;
                     
-                }
-                str zfill(int length){
-                    std::string l = v;
-                    int zeros = length - v.length();
-                    for(int i = 0; i< zeros; i++){
-                        l = "0" + l; 
-                    }
-                    return l;
                 }
                 str swapcase(){
                     std::string a = v;
@@ -206,14 +196,14 @@ namespace rsl{
                     }
                     return a;
                 }
-                bool startswith(std::string a, int b = 0, int c = 0){
+                bool startswith(rsl::str a, int b = 0, int c = 0){
                     std::string l = v;
                     int x = c;
                     if (x== 0){
-                        x = a.length();
+                        x = a.v.length();
                     }
-                    for (int i = 0; i< a.length(); i++){
-                        if (a[i+b] != l[i+b]){
+                    for (int i = 0; i< x; i++){
+                        if (a.v[i+b] != l[i+b]){
                             return false;
                         }
                     }
