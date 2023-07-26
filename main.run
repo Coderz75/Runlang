@@ -1,5 +1,7 @@
 #source/rsl
 
 fn main(){
-    raise("Hello!");
+    ptr<string> my_ptr(new string());
+    *my_ptr = "Hello";
+    print(*my_ptr);
 }

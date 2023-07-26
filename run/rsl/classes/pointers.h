@@ -24,17 +24,20 @@
 #include "exceptions.h"
 template <class T>
 class ptr {
-    int* pointer; // Actual pointer
+    T* pointer; 
 public:
-    // Constructor: Refer https:// www.geeksforgeeks.org/g-fact-93/
-    // for use of explicit keyword
-    explicit ptr(int* p = NULL) { pointer = p; }
- 
+
+    explicit ptr(T* p = NULL) { pointer = p; }
+
     // Destructor
-    ~ptr() { delete (pointer); }
+    ~ptr() { if (pointer != NULL) delete (pointer); }
  
-    // Overloading dereferencing operator
-    int& operator*() { return *pointer; }
+    // Dereference operator
+    T& operator*() { return *pointer; }
+
+    void clear(){
+        delete (pointer);
+    }
 };
 
 #endif
