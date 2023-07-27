@@ -240,7 +240,7 @@ elif compiler == "g++":
         in_file = e_message[0].split(":")[0]
         scope = e_message[0].split(":")[1].lstrip()
         line = int(e_message[1].split(":")[1])
-        actual_error = e_message[1].split(":")[-1].lstrip()
+        actual_error = e_message[1].split(":",4)[-1].lstrip()
         line_data = data[line-1].rstrip()
         prev_line = ""
         next_line = ""
@@ -248,7 +248,7 @@ elif compiler == "g++":
             prev_line = data[line-2].rstrip()
         if line != len(data):
             next_line = data[line].rstrip()
-        
+        sdebug(proc.stderr)
         error(actual_error,True,in_file,line, line_data, prev_line,next_line, fparser.generate_tips(actual_error))
 if not debug:
     os.remove(filetowrite)

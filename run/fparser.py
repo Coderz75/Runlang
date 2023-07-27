@@ -41,4 +41,8 @@ def generate_tips(error):
                 tips.append(f"You might have forgotten to put a {parse[1]} before the {parse[3]}")
         else:
             tips.append(f"You might have forgotten to put a {parse[1]} ")
+
+    elif parse[0] == "invalid":
+        if parse[1] == "cast":
+            tips.append("What happened is an invalid type conversion. The type you are converting to has no valid constructor for the type you are converting from. You can look at places (such as stackoverflow) in order to properly learn how to typecast the two types")
     return tips
