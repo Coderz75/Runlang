@@ -32,11 +32,12 @@ def sdebug(e):
 
 def error(e,acterror = False,file = "",line: int = 0, linedata = "",prevline = "",nextline = "", tips = None):
     if not acterror:
-        print("\033[91m(ERROR) " + e + "\nCompilation terminated\033[0m")
+        print("\033[91m(ERROR) " + e + "\nCompilation terminated\033[0m") # \n\33[31m
         sys.exit()
-    print(f"\033[91m(ERROR)\n{file} on line: {line} \n\33[33m{line-1}| {prevline} \n\33[31m{line}| {linedata} \n\33[33m{line+1}| {nextline} \n{e}\033[0m")
+    print(f"\n\033[91m(ERROR)\n{file} on line: {line} \n\33[31m{line-1}| {prevline} \n\033[91m{line}| {linedata} \n\33[31m{line+1}| {nextline} \n\033[91m{e}\033[0m")
     if tips:
-        print(f"\33[4mTips: \n{tips}\033[0m\n")
+        tips_str = "\n".join(tips)
+        print(f"\x1b[32mTips: \n{tips_str}\033[0m\n")
 
 commands = 0
 compiler = ""
@@ -231,7 +232,24 @@ elif compiler == "g++":
     )
     sdebug(" ".join(["g++","-std=c++20","-o", outname, filetowrite]))
     if proc.stderr != "":
-        error(proc.stderr)
+        error_message = proc.stderr
+        error_message=error_message.replace(".__RUNCACHE__","")
+        error_message=error_message.replace(".cpp",".run")
+        e_message = error_message.split("\n")
+
+        in_file = e_message[0].split(":")[0]
+        scope = e_message[0].split(":")[1].lstrip()
+        line = int(e_message[1].split(":")[1])
+        actual_error = e_message[1].split(":")[-1].lstrip()
+        line_data = data[line-1].rstrip()
+        prev_line = ""
+        next_line = ""
+        if line > 1:
+            prev_line = data[line-2].rstrip()
+        if line != len(data):
+            next_line = data[line].rstrip()
+        
+        error(actual_error,True,in_file,line, line_data, prev_line,next_line, fparser.generate_tips(actual_error))
 if not debug:
     os.remove(filetowrite)
     if compiler == "cl":

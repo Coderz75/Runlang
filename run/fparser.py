@@ -31,3 +31,14 @@ def replaceStr(y):
                 i+=len(strconv) 
         i+=1
     return h
+
+def generate_tips(error):
+    parse = error.split()
+    tips = []
+    if parse[0] == "expected":
+        if len(parse) >2:
+            if parse[2] == "before":
+                tips.append(f"You might have forgotten to put a {parse[1]} before the {parse[3]}")
+        else:
+            tips.append(f"You might have forgotten to put a {parse[1]} ")
+    return tips

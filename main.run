@@ -3,5 +3,5 @@
 fn main(){
     ptr<string> my_ptr(new string());
     *my_ptr = "Hello";
-    print(*my_ptr);
+    print(*my_ptr)
 }
